@@ -16,12 +16,10 @@ endif
 if g:islinux
 	set hlsearch "高亮搜索
 	set incsearch "实时匹配
-	
 	"Uncomment the following to have Vim jump to the last position when reopening a file
 	if has("autocmd")
 		au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")|exe "normal! g'\""|endif
 	endif
-
 	if g:isGUI
 		if filereadable("/etc/vim/gvimrc.local")
 			source /etc/vim/gvimrc.local
@@ -61,41 +59,60 @@ else
 	call vundle#rc('$VIM/vimfiles/bundle/')
 endif
 
-" let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-Bundle "terryma/vim-multiple-cursors"
+Bundle 'terryma/vim-multiple-cursors'
 Bundle "upsuper/vim-colorschemes"
-" Bundle "scrooloose/syntastic"
 Bundle 'taglist.vim'
 Bundle 'supertab'
 Bundle 'bufexplorer.zip'
 Bundle 'c.vim'
 Bundle 'a.vim'
-Bundle 'tagbar'
-Bundle 'ctrlp.vim'
+"相对 TagList 能更好的支持面向对象
+Bundle 'tagbar'                     
+"一个全路径模糊文件，缓冲区，最近最多使用，... 检索插件；详细帮助见 :h ctrlp
+Bundle 'ctrlp.vim'                  
 Bundle 'easygrep'
-Bundle 'snipmate'
-
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'ccvext.vim'
-Bundle 'cSyntaxAfter'
-"Bundle 'mattn/emmet-vim'
-Bundle 'Yggdroot/indentLine'
-"Bundle 'vim-javacompleteex'
-Bundle 'Mark--Karkat'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'scrooloose/nerdcommenter'
+"用于各种代码补全，这种补全是一种对代码中的词与代码块的缩写补全
+Bundle 'snipmate'                   
+"用于括号与引号自动补全，不过会与函数原型提示插件echofunc冲突,所以我就没有加入echofunc插件
+Bundle 'jiangmiao/auto-pairs'       
+"用于对指定文件自动生成tags与cscope文件并连接
+Bundle 'ccvext.vim'                 
+"高亮括号与运算符等
+Bundle 'cSyntaxAfter'               
+""HTML/CSS代码快速编写神器，
+"Bundle 'mattn/emmet-vim'           
+"用于显示对齐线，与 indent_guides 在显示方式上不同，根据自己喜好选择了
+Bundle 'Yggdroot/indentLine'        
+""java 补全插件
+"Bundle 'vim-javacompleteex'        
+"给不同的单词高亮，表明不同的变量时很有用
+Bundle 'Mark--Karkat'               
+"关键字补全、文件路径补全、tag补全等等，各种，非常好用，速度超快。
+Bundle 'Shougo/neocomplcache.vim'   
+"主要用于C/C++代码注释(其它的也行)
+Bundle 'scrooloose/nerdcommenter'   
 Bundle 'scrooloose/nerdtree'
-Bundle 'OmniCppComplete'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'repeat.vim'
-Bundle 'wesleyche/SrcExpl'
-Bundle 'std_c.zip'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-Bundle 'TxtBrowser'
-Bundle 'ZoomWin'
+"用于C/C++代码补全，这种补全主要针对命名空间、类、结构、共同体等进行补全
+Bundle 'OmniCppComplete'            
+"状态栏插件，更好的状态栏效果
+Bundle 'Lokaltog/vim-powerline'     
+"主要用.命令来重复上次插件使用的命令
+Bundle 'repeat.vim'                 
+"增强源代码浏览，其功能就像Windows中的Source Insight
+Bundle 'wesleyche/SrcExpl'          
+"用于增强C语法高亮
+Bundle 'std_c.zip'                  
+"快速给单词/句子两边增加符号
+Bundle 'tpope/vim-surround'         
+"用于保存文件时查检语法
+Bundle 'scrooloose/syntastic'       
+"用于文本文件生成标签与与语法高亮
+Bundle 'TxtBrowser'                 
+"用于分割窗口的最大化与还原
+Bundle 'ZoomWin'                    
+
 
 " Bundle 'git://git.wincent.com/command-t.git'
 
@@ -112,21 +129,16 @@ Bundle 'ZoomWin'
 "set :h vundle for more details or wiki for FAQ
 
 filetype plugin indent on     " required!
-"==============================vundle====================================================================
 
 
 
 
-"================================快捷键================================================
-"================================快捷键================================================
-
-
-
-""""""""""""""""""""""""""编码""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------------------------
+" < 文件编码 >
+" -----------------------------------------------------------------------------
 set encoding=utf-8  		"设置gvim内部编码，默认不更改
 set fileencoding=utf-8 		"设置当前文件编码，可以更改, 如:gbk(同cp936)
 set fileencodings=ucs-bom,utf-8,gbk,cp936,latin-1 	"设置支持打开的文件的编码
-
 set fileformat=unix "设置新（当前）文件的<EOL>格式，可以更改，如:doc(windows系统常用)
 "set fileformats=unix,doc,mac	"给出文件的<EOL>格式类型
 
@@ -138,10 +150,10 @@ if (g:iswingows && g:isGUI)
 endif
 
 
+
+
 " -----------------------------------------------------------------------------
-
 "  < 编写文件时的配置 >
-
 " -----------------------------------------------------------------------------
 filetype on                                           "启用文件类型侦测
 filetype plugin on                                    "针对不同的文件类型加载对应的插件
@@ -151,9 +163,11 @@ set expandtab                                         "将Tab键转换为空格
 set tabstop=4                                         "设置Tab键的宽度，可以更改，如：宽度为2
 set shiftwidth=4                                      "换行时自动缩进宽度，可更改（宽度同tabstop）
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度
-"set foldenable                                        "启用折叠
-"set foldmethod=indent                                 "indent 折叠方式
-"set foldmethod=marker                                "marker 折叠方式
+let mapleader = ";"
+set foldlevel=100                                     "默认不折叠
+set foldenable                                        "启用折叠
+set foldmethod=indent                                 "indent 折叠方式
+set foldmethod=marker                                   "marker 折叠方式
 " 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 当文件在外部被修改，自动更新该文件
@@ -183,10 +197,11 @@ imap <c-l> <Right>
 set number                                            "显示行号
 set laststatus=2                                      "启用状态栏信息
 set cmdheight=2                                       "设置命令行的高度为2，默认为1
-set cursorline                                        "突出显示当前行
-" set guifont=YaHei_Consolas_Hybrid:h10                 "设置字体:字号（字体名称空格用下划线代替）
+"set cursorline                                        "突出显示当前行
+"set guifont=YaHei_Consolas_Hybrid:h10                "设置字体:字号（字体名称空格用下划线代替）
 set nowrap                                            "设置不自动换行
 set shortmess=atI                                     "去掉欢迎界面
+set novisualbell                                        " 不要闪烁 
 " 设置 gVim 窗口初始位置及大小
 if g:isGUI
     " au GUIEnter * simalt ~x                           "窗口启动时自动最大化
@@ -605,7 +620,7 @@ au! BufRead,BufNewFile,BufEnter *.{c,cpp,h,java,javascript} call CSyntaxAfter()
 
 
 " -----------------------------------------------------------------------------
-"  easygrep
+"  < easygrep >
 " -----------------------------------------------------------------------------
 let Grep_Path = '/bin/grep' 
 "EasyGrep uses Vim's leader key, which is by default '\'.  For information on this key, type ":help mapleader".
@@ -621,7 +636,7 @@ let g:EasyGrepCommand = 1
 let g:EasyGrepFilesToExclude = "*.d,tags,*.o,*.bak,*~,cscope.*,*.a,*.o,*.pyc,*.bak,*.svn-base,*.swp"
 let g:EasyGrepJumpToMatch = 0
 let g:EasyGrepInvertWholeWord = 1
-
+"nnoremap<Leader>q :Grep<CR>
 
 
 
@@ -751,12 +766,11 @@ set completeopt=menu                        "关闭预览窗口
 " -----------------------------------------------------------------------------
 "  < powerline 插件配置 > 状态栏插件，更好的状态栏效果
 " -----------------------------------------------------------------------------
-"powerline{
- set guifont=PowerlineSymbols\ for\ Powerline
- set nocompatible
- set t_Co=256
- let g:Powerline_symbols = 'fancy'
-"} 
+set guifont=PowerlineSymbols\ for\ Powerline
+set nocompatible
+set t_Co=256
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_stl_path_style = 'full'
 
 
 
@@ -844,20 +858,10 @@ au BufRead,BufNewFile *.txt setlocal ft=txt
 
 
 
-
 " -----------------------------------------------------------------------------
 "  < ZoomWin 插件配置 > 用于分割窗口的最大化与还原
 " -----------------------------------------------------------------------------
 " 常规模式下按快捷键 <c-w>o 在最大化与还原间切换
-
-
-
-
-
-
-" =============================================================================
-"                          << 常用工具配置 >>
-" =============================================================================
 
 
 
@@ -983,9 +987,7 @@ au BufRead,BufNewFile,BufEnter * cd %:p:h
 " 指在常规模式下按"\"键加"t"键，这里不是同时按，而是先按"\"键后按"t"键，间隔在一
 " 秒内，而<Leader>cs是先按"\"键再按"c"又再按"s"键；如要修改"<leader>"键，可以把
 " 下面的设置取消注释，并修改双引号中的键为你想要的，如修改为逗号键。
-" let mapleader = ","
-
-
-
+" 上面已定义了!!!!!!!
+"let mapleader = ";"
 
 
