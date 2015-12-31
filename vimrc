@@ -106,7 +106,7 @@ Bundle 'easymotion/vim-easymotion'
 "关键字补全、文件路径补全、tag补全等等，各种，非常好用，速度超快。
 "Bundle 'Shougo/neocomplcache.vim'   
 "主要用于C/C++代码注释(其它的也行)
-"Bundle 'scrooloose/nerdcommenter'   
+Bundle 'scrooloose/nerdcommenter'   
 "用于C/C++代码补全，这种补全主要针对命名空间、类、结构、共同体等进行补全
 "Bundle 'OmniCppComplete'            
 "增强源代码浏览，其功能就像Windows中的Source Insight
@@ -451,7 +451,8 @@ let NERDTreeIgnore=['\.d$', '\.o$', '\.vim$', '\~$', '\.meta$', '\.unity$', '\.p
 set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible
 set t_Co=256
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'unicode'
 let g:Powerline_stl_path_style = 'full'
 
 
@@ -678,7 +679,12 @@ endif
 au BufNewFile,BufRead *.lua,*.txt set filetype=lua   
 
 
+func! Check_Lua_Syntax()
+    exec "!lua %"
+endfunc
 
+"快捷键设置
+nmap <leader>lua :call Check_Lua_Syntax()<CR>
 
 
 " ===================================================================================
