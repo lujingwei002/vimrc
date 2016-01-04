@@ -85,7 +85,6 @@ Bundle 'repeat.vim'
 Bundle 'easymotion/vim-easymotion'
 "Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'upsuper/vim-colorschemes'
-"Bundle 'ctrlp.vim'                  
 "Bundle 'genutils'
 "Bundle 'lookupfile'
 "Bundle 'easygrep'
@@ -108,7 +107,7 @@ Bundle 'easymotion/vim-easymotion'
 "主要用于C/C++代码注释(其它的也行)
 Bundle 'scrooloose/nerdcommenter'   
 "用于C/C++代码补全，这种补全主要针对命名空间、类、结构、共同体等进行补全
-"Bundle 'OmniCppComplete'            
+Bundle 'OmniCppComplete'            
 "增强源代码浏览，其功能就像Windows中的Source Insight
 "Bundle 'wesleyche/SrcExpl'          
 "用于增强C语法高亮
@@ -170,9 +169,9 @@ set tabstop=4                                         "设置Tab键的宽度，�
 set shiftwidth=4                                      "换行时自动缩进宽度，可更改（宽度同tabstop）
 set smarttab                                          "指定按一次backspace就删除shiftwidth宽度
 let mapleader = ";"
-"set foldlevel=100                                     "默认不折叠
-set nofoldenable                                        "启用折叠
-set foldmethod=syntax                                "indent 折叠方式
+"set foldlevel=100                                    "默认不折叠
+set nofoldenable                                      "启用折叠
+set foldmethod=syntax                                 "indent 折叠方式
 set foldcolumn=1
 "set foldmethod=marker                                   "marker 折叠方式
 " 常规模式下用空格键来开关光标行所在折叠（注：zR 展开所有折叠，zM 关闭所有折叠）
@@ -185,7 +184,7 @@ nmap cS :%s/\s\+$//g<CR>:noh<CR>
 nmap cM :%s/\r$//g<CR>:noh<CR>
 set ignorecase                                        "搜索模式里忽略大小写
 set smartcase                                         "如果搜索模式包含大写字符，不使用 'ignorecase' 选项，只有在输入搜索模式并且打开 'ignorecase' 选项时才会使用
-" set noincsearch                                       "在输入要搜索的文字时，取消实时匹配
+" set noincsearch                                     "在输入要搜索的文字时，取消实时匹配
 " Ctrl + K 插入模式下光标向上移动
 "imap <c-k> <Up>
 " Ctrl + J 插入模式下光标向下移动
@@ -204,14 +203,14 @@ set backspace=indent,eol,start      "退格键
 set number                                            "显示行号
 set laststatus=2                                      "启用状态栏信息
 set cmdheight=2                                       "设置命令行的高度为2，默认为1
-"set cursorline                                        "突出显示当前行
+set cursorline                                        "突出显示当前行
 "set guifont=YaHei_Consolas_Hybrid:h10                "设置字体:字号（字体名称空格用下划线代替）
-"set nowrap                                            "设置不自动换行
+"set nowrap                                           "设置不自动换行
 set shortmess=atI                                     "去掉欢迎界面
-set novisualbell                                        " 不要闪烁 
+set novisualbell                                      "不要闪烁 
 " 设置 gVim 窗口初始位置及大小
 if g:isGUI
-    " au GUIEnter * simalt ~x                           "窗口启动时自动最大化
+    " au GUIEnter * simalt ~x                         "窗口启动时自动最大化
     winpos 100 10                                     "指定窗口出现的位置，坐标原点在屏幕左上角
     set lines=38 columns=120                          "指定窗口大小，lines为高度，columns为宽度
 endif
